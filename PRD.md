@@ -103,7 +103,7 @@ Logistic Regression
 
 Random Forest
 
-XGBoost (optional)
+XGBoost
 
 Output:
 
@@ -181,34 +181,73 @@ Sepsis Risk: HIGH
 
 ML Prediction: 0.82
 LSTM Prediction: 0.79
+# 7. Evaluation Metrics
 
+The system will be evaluated using two categories of metrics:
+classification performance metrics and interpretability metrics.
+
+-------------------------------------------------
+
+7.1 Classification Performance Metrics
+
+These metrics measure the predictive accuracy of the ML and LSTM models.
+
+AUROC (Area Under Receiver Operating Characteristic Curve)
+Measures the model's ability to distinguish between septic and non-septic patients.
+This is the primary evaluation metric used in many sepsis prediction studies.
+
+Accuracy
+Overall percentage of correct predictions.
+
+Precision
+Proportion of predicted sepsis cases that are actually sepsis.
+
+Recall (Sensitivity)
+Proportion of actual sepsis cases that are correctly identified by the model.
+
+F1 Score
+Harmonic mean of precision and recall, providing a balanced evaluation.
+
+-------------------------------------------------
+
+7.2 Early Detection Metric
+
+Early Warning Time
+
+Measures how many hours before the actual sepsis onset the model can detect risk.
+This is clinically important because earlier detection allows faster treatment.
+
+-------------------------------------------------
+
+7.3 Interpretability Metrics
+
+Since the system integrates generative AI reasoning, interpretability will also be evaluated.
+
+Reasoning Coherence
+Measures whether the generated explanation logically aligns with the patient data
+and retrieved clinical evidence.
+
+Clinical Interpretability
+Evaluates whether the generated reasoning is understandable and useful
+for a clinician reviewing the decision.
+
+-------------------------------------------------
+
+7.4 Model Comparison
+
+The following models will be compared:
+
+- Logistic Regression
+- Random Forest
+- XGBoost
+- LSTM Time-Series Model
+- Hybrid ML + RAG + LLM System
 Reasoning:
 Elevated lactate and decreasing MAP indicate
 possible tissue hypoperfusion consistent with
 early sepsis patterns.
 
 Confidence: 0.81
-7. Evaluation Metrics
-
-The system will be evaluated using:
-
-Classification metrics
-
-AUROC
-
-Accuracy
-
-Precision
-
-Recall
-
-F1 score
-
-Interpretability metrics
-
-reasoning coherence
-
-clinician interpretability
 
 8. Project Development Phases
 Phase 1 — Dataset pipeline
