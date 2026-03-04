@@ -4,15 +4,22 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtual environment
+# Virtual environments
 .venv/
+env/
+venv/
 
-# Data
-data/raw/*
-!data/raw/.keep
+# Dataset (DO NOT PUSH)
+data/raw/
+data/processed/
 
-# Notebook checkpoints
-.ipynb_checkpoints/
+# Models
+*.pt
+*.pth
+*.bin
+
+# Logs
+*.log
 
 # OS
 .DS_Store
