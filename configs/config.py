@@ -98,7 +98,7 @@ class Config:
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     """Base URL of the local Ollama server."""
 
-    OLLAMA_MODEL_NAME: str = "llama3"
+    OLLAMA_MODEL_NAME: str = "llama3:latest"
     """Ollama model tag to use for clinical reasoning."""
 
     MAX_TOKENS: int = 512

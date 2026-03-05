@@ -33,18 +33,10 @@ logger = setup_logger("dataset_loader")
 
 # Resolve project root relative to this file:
 #   src/preprocessing/dataset_loader.py  →  ../../
+from pathlib import Path
 _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-_RAW_DATA_DIR = (
-    _PROJECT_ROOT
-    / "data"
-    / "raw"
-    / "physionet.org"
-    / "files"
-    / "challenge-2019"
-    / "1.0.0"
-    / "training"
-)
+_RAW_DATA_DIR = _PROJECT_ROOT / "data" / "raw"
 
 _SET_DIRS: Dict[str, Path] = {
     "A": _RAW_DATA_DIR / "training_setA",

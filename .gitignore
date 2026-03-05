@@ -1,25 +1,30 @@
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
-# Virtual environments
+# Virtual env
 .venv/
-env/
 venv/
 
-# Dataset (DO NOT PUSH)
+# Dataset
 data/raw/
 data/processed/
 
-# Models
-*.pt
-*.pth
-*.bin
+# Large models / indexes
+models/*.faiss
+models/*.index
+models/patient_cases.pkl
+
+# Huggingface cache
+.cache/
+.huggingface/
 
 # Logs
 *.log
 
+# Jupyter
+.ipynb_checkpoints/
+
 # OS
 .DS_Store
+Thumbs.db

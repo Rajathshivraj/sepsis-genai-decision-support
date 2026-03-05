@@ -1,0 +1,23 @@
+{
+    "LogisticRegression": {
+        "AUROC": 0.72,
+        "Accuracy": 0.68,
+        "Precision": 0.64,
+        "Recall": 0.61,
+        "F1": 0.62
+    },
+    "RandomForest": {
+        "AUROC": 0.81,
+        "Accuracy": 0.77,
+        "Precision": 0.74,
+        "Recall": 0.71,
+        "F1": 0.72
+    },
+    "XGBoost": {
+        "AUROC": 0.85,
+        "Accuracy": 0.8,
+        "Precision": 0.77,
+        "Recall": 0.75,
+        "F1": 0.76
+    }
+}

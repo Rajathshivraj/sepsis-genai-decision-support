@@ -109,7 +109,10 @@ def prepare_lstm_sequences(
     # --- Impute missing values per-column before sequencing ----------------
     df = df.copy()
     for col in available_cols:
-        df[col] = df[col].fillna(df[col].median())
+        median = df[col].median()
+    if np.isnan(median):
+        median = 0.0
+    df[col] = df[col].fillna(median)
 
     # --- Sliding-window extraction per patient ----------------------------
     X_sequences: List[np.ndarray] = []
@@ -133,7 +136,9 @@ def prepare_lstm_sequences(
             y_labels.append(int(labels[i + sequence_length - 1]))
 
     X_seq = np.array(X_sequences, dtype=np.float32)
+    X_seq = np.nan_to_num(X_seq, nan=0.0, posinf=0.0, neginf=0.0)
     y_seq = np.array(y_labels, dtype=np.float32)
+    y_seq = np.nan_to_num(y_seq, nan=0.0)
 
     logger.info(
         "Sequences ready — X %s, y %s  (pos=%.1f%%)",
@@ -338,3 +343,37 @@ def train_lstm_model(
 
     model = model.cpu()
     return model, metrics
+
+
+# ---------------------------------------------------------------------------
+# 4. Main training pipeline
+# ---------------------------------------------------------------------------
+
+def main():
+    from src.preprocessing.dataset_loader import load_all_patients
+
+    logger.info("Loading dataset for LSTM training...")
+
+    df = load_all_patients(
+        training_set="A",
+        max_patients=2000,
+        data_dir="data/raw"
+    )
+
+    logger.info("Preparing sequences...")
+    X_seq, y_seq = prepare_lstm_sequences(df)
+
+    logger.info("Training LSTM model...")
+    model, metrics = train_lstm_model(X_seq, y_seq)
+
+    import os
+    os.makedirs("models", exist_ok=True)
+
+    torch.save(model.state_dict(), "models/lstm_model.pt")
+
+    logger.info("LSTM model saved to models/lstm_model.pt")
+    logger.info("Metrics: %s", metrics)
+
+
+if __name__ == "__main__":
+    main()
